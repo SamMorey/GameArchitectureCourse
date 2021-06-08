@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -6,7 +5,7 @@ using UnityEngine.UI;
 using Ink.Runtime;
 
 
-public class DialogController : ToggleablePanel
+public partial class DialogController : ToggleablePanel
 {
     [SerializeField] TMP_Text _storyText;
     [SerializeField] Button[] _choiceButtons;
@@ -66,12 +65,20 @@ public class DialogController : ToggleablePanel
                 string eventName = tag.Remove(0, 2);
                 GameEvent.RaiseEvent(eventName);
             }
-            if (tag.StartsWith("Q."))
+            else if (tag.StartsWith("Q."))
             {
                 string questName = tag.Remove(0, 2);
                 QuestManager.Instance.AddQuestByName(questName);
             }
+            else if (tag.StartsWith("F."))
+            {
+                // #F.BrokenPanelsInspected.9
+                //string flagName = tag.Remove(0, 2);
+                var values = tag.Split('.');
+                string flagName = values[1];
+                string value = values[2];
+                FlagManager.Instance.Set(flagName, value);
+            }
         }
     }
-
 }

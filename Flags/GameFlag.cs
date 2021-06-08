@@ -12,4 +12,10 @@ public abstract class GameFlag<T> : GameFlag
     public T Value { get; protected set; }
     private void OnEnable() => Value = default;
     private void OnDisable() => Value = default;
+
+    public void Set(T value)
+    {
+        Value = value;
+        SendChanged();
+    }
 }

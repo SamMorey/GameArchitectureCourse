@@ -1,14 +1,8 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Bool Game Flag")]
+[CreateAssetMenu(menuName = "GameFlag/String")]
 public class StringGameFlag : GameFlag<string>
 {
-    public void Set(string value)
-    {
-        Value = value;
-        SendChanged();
-    }
-
     public void Append(string value)
     {
         Value += " " + value;

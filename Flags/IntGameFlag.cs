@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Int Game Flag")]
+[CreateAssetMenu(menuName = "GameFlag/Int")]
 public class IntGameFlag : GameFlag<int>
 {
     public void Modify(int amount)
