@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class FlagManager : MonoBehaviour
 {
-    [SerializeField] List<GameFlag> _allFlags;
+    [SerializeField]List<GameFlag> _allFlags;
     Dictionary<string, GameFlag> _allFlagsDict = new Dictionary<string, GameFlag>();
     public static FlagManager Instance { get; private set; }
 
@@ -14,7 +13,7 @@ public class FlagManager : MonoBehaviour
     void Start() =>
         _allFlagsDict = _allFlags.ToDictionary(k => Regex.Replace(k.name, @"\s+", ""),
             v => v);
-
+    void OnValidate() => _allFlags = GameUtils.GetAllInstances<GameFlag>();
     public void Set(string flagName, string value)
     {
         if (_allFlagsDict.TryGetValue(flagName, out GameFlag flag) == false)
