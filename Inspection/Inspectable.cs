@@ -8,7 +8,9 @@ public class Inspectable : MonoBehaviour
     [SerializeField] float _timeToInspect = 3f;
     static HashSet<Inspectable> _inspectablesInRange = new HashSet<Inspectable>();
     float _timeInspected;
-    public static IReadOnlyCollection<Inspectable> InspectablesInRange => _inspectablesInRange; 
+    public static IReadOnlyCollection<Inspectable> InspectablesInRange => _inspectablesInRange;
+    public float InspectionProgress => _timeInspected / _timeToInspect;
+
     public static event Action<bool> InspectablesInRangeChanged; 
 
     void OnTriggerEnter(Collider other)

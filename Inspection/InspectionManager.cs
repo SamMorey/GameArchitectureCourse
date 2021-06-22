@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class InspectionManager : MonoBehaviour
 {
-    Inspectable _currentInspectable;
+    static Inspectable _currentInspectable;
+    public static bool Inspecting => _currentInspectable != null;
+    public static float InspectionProgress => _currentInspectable?.InspectionProgress ?? 0f;
 
     void Update()
     {
