@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using UnityEngine;
-
+[Serializable]
 public class GamePersistence : MonoBehaviour
 {
-    private GameData _gameData;
+    [SerializeField] private GameData _gameData;
     void Start() => LoadGameFlags();
     private void OnDisable() => SaveGameFlags();
     private void SaveGameFlags()
@@ -22,5 +23,6 @@ public class GamePersistence : MonoBehaviour
             _gameData = new GameData();
         }
         FlagManager.Instance.Bind(_gameData.GameFlagDatas);
+        InspectionManager.Bind(_gameData.InspectableDatas);
     }
 }
