@@ -18,6 +18,7 @@ public class Inspectable : MonoBehaviour
     [SerializeField] UnityEvent OnInspectionCompleted;
     [SerializeField, TextArea] string _completedInspectionText;
     [SerializeField] float _inspectionTextDisplayLength = 3f;
+    [SerializeField] bool _requireMinigame;
     InspectableData _data;
 
     void Awake() => _allConditions = GetComponents<IMet>();
@@ -57,7 +58,12 @@ public class Inspectable : MonoBehaviour
         _data.TimeInspected += Time.deltaTime;
         if (WasFullyInspected)
         {
-            CompleteInspection();
+            if (_requireMinigame)
+                MinigameManager.Instance.StartMinigame(CompleteInspection);
+            else
+            {
+                CompleteInspection();
+            }
         }
     }
 
